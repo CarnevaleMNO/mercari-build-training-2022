@@ -3,36 +3,139 @@
 }
 
 .Title {
-  background-color: #222427;
-  min-height: 8vh;
+  background-color: #7C884E;
+  min-height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   font-size: calc(10px + 1vmin);
   color: white;
+  font-size: 2rem;
 }
 
 .Listing {
   background-color: #222427;
-  min-height: 8vh;
+  min-height: 12vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   font-size: calc(10px + 1vmin);
   color: white;
 }
 
+.Listing input {
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.Listing button {
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.Listing button:hover {
+  background-color: #7C884E;
+  color: white;
+}
+
+.Listing button:active {
+  transform: translateY(2px);
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.categories ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+ul li {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #7C884E;
+  padding: .7rem;
+  border-radius: 5px;
+  transition: all .2s;
+}
+
+a:hover, a:focus {
+  background-color: #7C884E;
+  color: white;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+}
+
+.AllItems {
+  margin-top: 5rem;
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+  justify-items: center;
+  box-shadow: #7C884E 0px 0px 10px;
+  border-radius: 10px;
+}
+
 .ItemList {
-  background-color: #222427;
+  background-color: white;
   min-height: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: left;
-  font-size: calc(10px + 1vmin);
+  font-size: .8rem;
+  color: black;
+  line-height: 1.5;
+}
+
+.ItemImage {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 10px;
+  border: 1px solid black;
+  object-fit: cover;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag {
+  font-size: x-small;
+  background-color: lightgray;
   color: white;
+  padding: .15rem;
+  border-radius: 5px;
+  margin-right: .5rem;
+  width: fit-content;
 }
 
 .App-link {
