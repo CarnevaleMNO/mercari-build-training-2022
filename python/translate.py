@@ -1,6 +1,14 @@
+import os
 import requests
 import json
 import urllib.parse
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Rapid API key
+dotenv_path = Path('rapidapi_key.env')
+load_dotenv(dotenv_path=dotenv_path)
+RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY")
 
 def translate_to_japanese(item_name):
   url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
@@ -10,7 +18,7 @@ def translate_to_japanese(item_name):
     "content-type": "application/x-www-form-urlencoded",
     "Accept-Encoding": "application/gzip",
     "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
-    "X-RapidAPI-Key": "ecad780f8emsh4be70dd8431b5d5p181387jsndea9fa424723"
+    "X-RapidAPI-Key": RAPIDAPI_KEY
   }
 
   response = requests.request("POST", url, data=payload, headers=headers)
@@ -27,7 +35,7 @@ def translate_to_english(item_name):
     "content-type": "application/x-www-form-urlencoded",
     "Accept-Encoding": "application/gzip",
     "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
-    "X-RapidAPI-Key": "ecad780f8emsh4be70dd8431b5d5p181387jsndea9fa424723"
+    "X-RapidAPI-Key": RAPIDAPI_KEY
   }
 
   response = requests.request("POST", url, data=payload, headers=headers)

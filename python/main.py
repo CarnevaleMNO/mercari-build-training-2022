@@ -22,7 +22,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get("/")
 def root():
     return {"message": "Hello, world!"}
@@ -61,7 +60,7 @@ async def read_items(keyword: str):
 def add_item(name: str = Form(...), category: str = Form(...), image: UploadFile = Form(...)):
     category_id = int(category)
     image_hash = hash_image(image.file.read())
-    #name = translate_item(name)
+    # name = translate_item(name)
     db.add_item(name, category, image_hash)
     return {"id": image_hash, "name": name, "category": category_id, "image_filename": image_hash}
 
