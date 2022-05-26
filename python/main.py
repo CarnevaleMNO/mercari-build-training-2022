@@ -4,6 +4,7 @@ import pathlib
 from fastapi import FastAPI, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+from translate import translate_api
 import db
 import hashlib
 from os.path import join, dirname, realpath
@@ -60,6 +61,7 @@ async def read_items(keyword: str):
 def add_item(name: str = Form(...), category: str = Form(...), image: UploadFile = Form(...)):
     category_id = int(category)
     image_hash = hash_image(image.file.read())
+    #name = translate_item(name)
     db.add_item(name, category, image_hash)
     return {"id": image_hash, "name": name, "category": category_id, "image_filename": image_hash}
 
@@ -91,3 +93,6 @@ def hash_image(image):
     with open(image_path, "wb") as f:
         f.write(image)
     return image_hash
+
+def translate_item(item_name):
+    return translate_api(item_name)
