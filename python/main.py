@@ -4,7 +4,7 @@ import pathlib
 from fastapi import FastAPI, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from translate import translate_api
+from translate import translate_to_japanese, translate_to_english
 import db
 import hashlib
 from os.path import join, dirname, realpath
@@ -95,4 +95,9 @@ def hash_image(image):
     return image_hash
 
 def translate_item(item_name):
-    return translate_api(item_name)
+    check_ascii = item_name.isascii()
+    if check_ascii == True:
+        return translate_to_japanese(item_name)
+    else:
+        return translate_to_english(item_name)
+
