@@ -4,8 +4,9 @@ import pathlib
 from fastapi import FastAPI, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from translate import translate_to_japanese, translate_to_english
+from translate import *
 import db
+import urllib.parse
 import hashlib
 from os.path import join, dirname, realpath
 
@@ -33,7 +34,7 @@ async def read_items():
     all_items = []
     for item in items:
         all_items.append(
-            {"id": item[0], "name": item[1], "category": item[2], "image": item[3]})
+            {"id": item[0], "name": item[1], "category": item[2], "image": item[4]})
     return all_items
 
 
@@ -62,9 +63,17 @@ def add_item(name: str = Form(...), category: str = Form(...), image: UploadFile
     image_hash = hash_image(image.file.read())
     
     translated_name = translate_item(name)
+    detected_language = language_detection(name)
+    
+    if detected_language == 'ja':
+        ja_name = name
+        en_name = translated_name
+    else:
+        ja_name = translated_name
+        en_name = name
 
-    db.add_item(name, category, image_hash)
-    return {"id": image_hash, "name": name, "category": category_id, "image_filename": image_hash}
+    db.add_item(ja_name, en_name, category, image_hash)
+    return {"id": image_hash, "Japanese name": ja_name, "English name": en_name, "category": category_id, "image_filename": image_hash}
 
 
 @app.get("/image/{image_filename}")
@@ -102,3 +111,10 @@ def translate_item(item_name):
     else:
         return translate_to_english(item_name)
 
+def language_detection(item_name):
+    check_ascii = item_name.isascii()
+    if check_ascii == True:
+        return detect_language(item_name)
+    else:
+        encoded_item_name = urllib.parse.quote(item_name.encode('utf-8'))
+        return detect_language(encoded_item_name)
