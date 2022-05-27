@@ -34,7 +34,7 @@ async def read_items():
     all_items = []
     for item in items:
         all_items.append(
-            {"id": item[0], "name": item[1], "category": item[2], "image": item[4]})
+            {"id": item[0], "jp_name": item[1], "en_name": item[2], "category": item[3], "image": item[4]})
     return all_items
 
 
