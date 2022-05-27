@@ -74,13 +74,21 @@ def delete_item(item_id):
 # cursor = connection.cursor()
 # cursor.execute("""
 # CREATE TABLE IF NOT EXISTS items (
-#     id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     name TEXT,
+#     id INTEGER PRIMARY KEY,
+#     ja_name TEXT,
+#     en_name TEXT,
 #     category INTEGER,
 #     image_filename TEXT
 # )
 # """)
+
+# create category table
+
+# cursor.execute("""
+# CREATE TABLE IF NOT EXISTS category (
+#     id INTEGER PRIMARY KEY,
+#     name TEXT
+# )
+# """)
 # connection.commit()
 # connection.close()
-
-
