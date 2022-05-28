@@ -2,14 +2,14 @@ from multiprocessing import connection
 import sqlite3
 
 
-def add_item(name, category_id, image_hash):
+def add_item(ja_name, en_name, category_id, image_hash):
     connection = sqlite3.connect("../db/mercari.sqlite3")
     cursor = connection.cursor()
     image = image_hash + ".jpg"
     cursor.execute("""
-    INSERT INTO items (name, category, image_filename)
-    VALUES (?, ?, ?)
-    """, (name, category_id, image))
+    INSERT INTO items (ja_name, en_name, category, image_filename)
+    VALUES (?, ?, ?, ?)
+    """, (ja_name, en_name, category_id, image))
     connection.commit()
     connection.close()
 
@@ -18,7 +18,7 @@ def get_items():
     connection = sqlite3.connect("../db/mercari.sqlite3")
     cursor = connection.cursor()
     cursor.execute("""
-    SELECT items.id, items.name, category.name AS category_name, items.image_filename
+    SELECT items.id, items.ja_name, items.en_name, category.name AS category_name, items.image_filename
     FROM items
     LEFT JOIN category
     ON items.category = category.id
@@ -74,13 +74,21 @@ def delete_item(item_id):
 # cursor = connection.cursor()
 # cursor.execute("""
 # CREATE TABLE IF NOT EXISTS items (
-#     id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     name TEXT,
+#     id INTEGER PRIMARY KEY,
+#     ja_name TEXT,
+#     en_name TEXT,
 #     category INTEGER,
 #     image_filename TEXT
 # )
 # """)
+
+# create category table
+
+# cursor.execute("""
+# CREATE TABLE IF NOT EXISTS category (
+#     id INTEGER PRIMARY KEY,
+#     name TEXT
+# )
+# """)
 # connection.commit()
 # connection.close()
-
-
