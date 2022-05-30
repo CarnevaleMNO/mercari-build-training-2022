@@ -64,7 +64,6 @@ export const Listing: React.FC<Prop> = (props) => {
   return (
     <div className="Listing">
       <form onSubmit={onSubmit}>
-        <div>
           <input
             type="text"
             name="name"
@@ -88,6 +87,7 @@ export const Listing: React.FC<Prop> = (props) => {
           
           </select>
           <input
+            className="submit-file"
             type="file"
             name="image"
             id="image"
@@ -95,7 +95,6 @@ export const Listing: React.FC<Prop> = (props) => {
             required
           />
           <button type="submit">List this item</button>
-        </div>
       </form>
     </div>
   );

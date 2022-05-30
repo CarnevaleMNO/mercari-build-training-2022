@@ -31,15 +31,26 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: rgb(227, 222, 222);
   border-radius: 0;
   margin-bottom: 20px;
   padding: 1rem;
   color: #03045e;
-  background-color: white;
   min-height: 5rem;
   border-bottom: #e5e7eb solid 1px;
   box-shadow: #e5e7eb 0px 0px 7px 0px inset;
+}
+
+@media only screen and (max-width: 600px) {
+  .search-list-bar{
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .search-list-bar{
+    float: right;
+  }
 }
 
 .Listing input[type=text] {
@@ -72,16 +83,37 @@
   translate: translateY(1px);
 }
 
+.submit-file{
+  margin: 3.2px;
+}
+
+.item-list{
+  background-color: white;
+}
+
 .item-list-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  padding-top: 30px;
 }
 
 .item-list-search {
   display: flex;
   align-items: center;
+}
+
+.item-list-item{
+  background-color: rgb(227, 222, 222);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 5px 5px 10px rgb(155, 154, 154);
+}
+
+.item-list-item-name{
+  text-align:center;
+  color: #03045e;
 }
 
 .searchbar-input {
@@ -102,7 +134,8 @@
   color: #03045e;
   background-color: white;
   cursor: pointer;
-  margin-right: 1rem;
+  margin-right: 3.2px;
+  margin-left: 3.2px;
 }
 
 .searchbar-button:hover {
@@ -136,6 +169,8 @@ h1 {
   align-items: center;
   justify-items: center;
   border-radius: 10px;
+  margin-left: 7rem;
+  margin-right: 7rem;
 }
 
 .ItemList {
@@ -154,7 +189,6 @@ h1 {
   width: 10rem;
   height: 10rem;
   border-radius: 10px;
-  border: 1px solid black;
   object-fit: cover;
 }
 
