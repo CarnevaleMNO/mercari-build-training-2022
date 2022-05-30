@@ -27,14 +27,19 @@ function App() {
   return (
     <Router>
       <div className="navbar">
-        <header className="Title">
-          <p className="label">
-            <Link to="/">
-              <RiRainbowFill className="icon" />
-              <b>Simple Mercari</b>
-            </Link>
-          </p>
-          <form onSubmit={handleSubmit}>
+        <div>
+          <header className="Title">
+            <p className="label">
+              <Link to="/">
+                <RiRainbowFill className="icon" />
+                <b>Simple Mercari</b>
+              </Link>
+            </p>
+          </header>
+        </div>
+        <div>
+          <div>
+            <form onSubmit={handleSubmit} className="search-list-bar">
               <input
                 className="searchbar-input"
                 type="text"
@@ -46,8 +51,11 @@ function App() {
                 search
               </button>
             </form>
-        </header>
-        <Listing onListingCompleted={() => setReload(true)} />
+          </div>
+          <div className="search-list-bar">
+            <Listing onListingCompleted={() => setReload(true)} />
+          </div>
+        </div>
       </div>
       <Routes>
         <Route
