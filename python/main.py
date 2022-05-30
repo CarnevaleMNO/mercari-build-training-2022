@@ -53,7 +53,7 @@ async def read_items(keyword: str):
     items = db.search_items(keyword)
     for item in items:
         all_items["items"].append(
-            {"id": item[0], "en_name": item[1], "ja_name":item[2], "category": item[4], "image": item[5]})
+            {"id": item[0], "en_name": item[1], "ja_name":item[2], "category": item[3], "image": item[4]})
     logger.info(f"{all_items}")
     return all_items
 
