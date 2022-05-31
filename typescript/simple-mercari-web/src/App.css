@@ -42,6 +42,18 @@
   box-shadow: #e5e7eb 0px 0px 7px 0px inset;
 }
 
+@media only screen and (max-width: 600px) {
+  .search-list-bar{
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .search-list-bar{
+    float: right;
+  }
+}
+
 .Listing input[type=text] {
   padding: 0.5rem;
   border: #e5e7eb solid 1px;
@@ -82,6 +94,18 @@
 .item-list-search {
   display: flex;
   align-items: center;
+}
+
+.item-list-item{
+  background-color: rgb(227, 222, 222);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 3px 3px 3px rgb(155, 154, 154);
+}
+
+.item-list-item-name{
+  text-align:center;
+  color: #03045e;
 }
 
 .searchbar-input {
@@ -136,6 +160,8 @@ h1 {
   align-items: center;
   justify-items: center;
   border-radius: 10px;
+  margin-left: 7rem;
+  margin-right: 7rem;
 }
 
 .ItemList {
@@ -154,7 +180,6 @@ h1 {
   width: 10rem;
   height: 10rem;
   border-radius: 10px;
-  border: 1px solid black;
   object-fit: cover;
 }
 

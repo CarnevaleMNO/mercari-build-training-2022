@@ -42,19 +42,32 @@ def get_item(item_id):
     return item
 
 
+# return search items based on english or japanese name
 def search_items(keyword):
     connection = sqlite3.connect("../db/mercari.sqlite3")
     cursor = connection.cursor()
     cursor.execute("""
-    SELECT items.id, items.en_name, items.ja_name, items.category_id, category.name AS category_name, items.image_filename
+    SELECT items.id, items.en_name, items.ja_name, category.name AS category_name, items.image_filename
     FROM items
     LEFT JOIN category
     ON items.category_id = category.id
-    WHERE items.en_name LIKE ?
-    """, ("%" + keyword + "%",))
+    WHERE items.en_name LIKE ? OR items.ja_name LIKE ?
+    """, ("%" + keyword + "%", "%" + keyword + "%"))
     items = cursor.fetchall()
     connection.close()
     return items
+    # connection = sqlite3.connect("../db/mercari.sqlite3")
+    # cursor = connection.cursor()
+    # cursor.execute("""
+    # SELECT items.id, items.en_name, items.ja_name, items.category_id, category.name AS category_name, items.image_filename
+    # FROM items
+    # LEFT JOIN category
+    # ON items.category_id = category.id
+    # WHERE items.en_name LIKE ?
+    # """, ("%" + keyword + "%",))
+    # items = cursor.fetchall()
+    # connection.close()
+    # return items
 
 
 def delete_item(item_id):
