@@ -10,19 +10,24 @@ const placeholderImage = process.env.PUBLIC_URL + "/logo192.png";
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchKeyword = searchParams.get("keyword");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedLanguage, setSelectedLanguage] = useState("ja");
+  const [searchText, setSearchText] = useState("");
   
     const [items, setItems] = useState([]);
     const fetchItems = async () => {
         const response = await fetch(`${server}?keyword=${searchKeyword}`);
         const json = await response.json();
         setItems(json.items);
-        console.log(json);
+        console.log(json.items);
+        if (json.items[0].en_name === searchKeyword){
+          setSelectedLanguage("en");
+        }
     };
     useEffect(() => {
         fetchItems();
     }, [searchKeyword]);
-
-
+    
 
     const categories = [];
     if (items.length > 0) {
@@ -32,11 +37,6 @@ export default function Search() {
         }
       });
     }
-
-  
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedLanguage, setSelectedLanguage] = useState("en");
-  const [searchText, setSearchText] = useState("");
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
